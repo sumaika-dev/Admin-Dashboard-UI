@@ -1,0 +1,285 @@
+/* --- Global Resets & System Architectures --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+/* --- THE MASTER DASHBOARD CONTAINER --- */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 260px 1fr; /* Sidebar fixed 260px, Main Workspace expands fluidly */
+  min-height: 100vh;
+}
+
+/* --- 1. PERSISTENT SIDEBAR NAVIGATION --- */
+.sidebar {
+  background-color: #0f172a; /* Slate 900 Ultra Premium Dark */
+  color: #ffffff;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+}
+
+.sidebar-menu ul {
+  list-style: none;
+}
+
+.sidebar-menu li {
+  margin-bottom: 8px;
+}
+
+.sidebar-menu a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  display: block;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-menu li.active a, 
+.sidebar-menu a:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+/* --- WORKSPACE PACKING WINDOW --- */
+.main-content {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* --- 2. REGULAR HEADER CONTROLS --- */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 20px;
+}
+
+.search-bar input {
+  width: 320px;
+  padding: 10px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-bar input:focus {
+  border-color: #0f172a;
+}
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.admin-info h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.admin-info p {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* --- 3. METRICS CARD MATRIX --- */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.metric-card h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.trend {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.trend.positive { color: #10b981; }
+.trend.stable { color: #64748b; }
+
+/* --- 4. CORPORATE INTERFACE DATA SHEET --- */
+.table-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.table-wrapper {
+  overflow-x: auto; /* Keeps wide tables scrollable inside narrow viewports safely */
+  width: 100%;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap; /* Prevents cell sentences from text-wrapping awkwardly */
+}
+
+.data-table th {
+  background-color: #f8fafc;
+  padding: 12px 16px;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.data-table td {
+  padding: 16px;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.status-badge.success { background-color: #d1fae5; color: #065f46; }
+.status-badge.warning { background-color: #fef3c7; color: #92400e; }
+
+/* --- 📱 FLUID MOBILE RESPONSIVE ENGINE RULES --- */
+.menu-toggle {
+  display: none; /* Hidden on desktop view grids */
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 14px;
+  font-size: 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 999; /* Higher layer over page elements */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 968px) {
+  .dashboard-container {
+    grid-template-columns: 1fr; /* Grid collapses to full workspace width */
+  }
+
+  .menu-toggle {
+    display: block; /* Hamburger becomes interactive trigger */
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px; /* Slides off viewport window leftside bounds */
+    width: 260px;
+    height: 100vh;
+    z-index: 998;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 10px 0 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* JavaScript activates smooth side panel pop out matching this target class */
+  .sidebar.active {
+    left: 0;
+  }
+
+  .main-content {
+    padding: 80px 16px 24px 16px; /* Adjust top space allocation to dodge menu float buttons */
+    gap: 24px;
+  }
+
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .search-bar, .search-bar input {
+    width: 100%; /* Forms snap full wide */
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics-row {
+    grid-template-columns: 1fr; /* Metrics stack linearly on tight touch targets */
+    gap: 16px;
+  }
+}

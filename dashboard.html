@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Enterprise Admin Dashboard | Responsive</title>
+</head>
+<body>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
+
+  <div class="dashboard-container">
+    
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <h2>Nexis.io</h2>
+      </div>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="active"><a href="#">📊 Overview</a></li>
+          <li><a href="#">📦 Products</a></li>
+          <li><a href="#">👥 Customers</a></li>
+          <li><a href="#">📈 Analytics</a></li>
+          <li><a href="#">⚙️ Settings</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      
+      <header class="main-header">
+        <div class="search-bar">
+          <input type="text" placeholder="Search analytics, users, logs...">
+        </div>
+        <div class="admin-profile">
+          <img src="profile.png" alt="Admin Profile" class="avatar">
+          <div class="admin-info">
+            <h4>Sumaika S.</h4>
+            <p>Super Admin</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="metrics-row">
+        
+        <div class="metric-card">
+          <div class="metric-info">
+            <p class="metric-label">Total Revenue</p>
+            <h3>$48,259.00</h3>
+            <span class="trend positive">+12.5% this month</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-info">
+            <p class="metric-label">Active Developers</p>
+            <h3>1,204</h3>
+            <span class="trend positive">+8.2% vs last week</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-info">
+            <p class="metric-label">System Deployments</p>
+            <h3>99.98%</h3>
+            <span class="trend stable">Optimal Status</span>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="table-section">
+        <div class="table-header">
+          <h3>Recent Project Deployments</h3>
+          <button class="btn-primary">View All</button>
+        </div>
+        
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Client Region</th>
+                <th>Data Stack</th>
+                <th>Status</th>
+                <th>Budget Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>SaaSflow Engine</strong></td>
+                <td>United States</td>
+                <td>Vanilla JS / CSS3</td>
+                <td><span class="status-badge success">Live</span></td>
+                <td>$3,500.00</td>
+              </tr>
+              <tr>
+                <td><strong>PuppyWorld Platform</strong></td>
+                <td>Germany (EU)</td>
+                <td>Bootstrap 5 / UI</td>
+                <td><span class="status-badge success">Live</span></td>
+                <td>$4,200.00</td>
+              </tr>
+              <tr>
+                <td><strong>Nexus Inventory</strong></td>
+                <td>Local Server</td>
+                <td>PHP / MySQL</td>
+                <td><span class="status-badge warning">Testing</span></td>
+                <td>$1,800.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main> </div> <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    menuToggle.addEventListener('click', (e) => {
+      sidebar.classList.toggle('active');
+      e.stopPropagation(); // Prevents immediate closing event trigger
+    });
+
+    // Close sidebar dynamically if clicked outside the panel box on mobile screens
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 968 && !sidebar.contains(e.target) && e.target !== menuToggle) {
+        sidebar.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>
