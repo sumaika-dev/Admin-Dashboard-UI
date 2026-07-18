@@ -1,41 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="dashboard.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Enterprise Admin Dashboard | Responsive</title>
+
+  <!-- Performance: preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Load minified stylesheet efficiently -->
+  <link rel="preload" href="dashboard.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="dashboard.min.css"></noscript>
+
+  <style>
+    /* Minimal helper for skip-link visibility (kept inlined for immediate usability) */
+    .skip-link {
+      position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 0; top: 0; width: auto; height: auto; padding: 0.5rem; background:#111;color:#fff; z-index:1000;
+    }
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
+  <button
+    id="menuToggle"
+    class="menu-toggle"
+    aria-controls="sidebar"
+    aria-expanded="false"
+    aria-label="Open navigation">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </button>
 
   <div class="dashboard-container">
-    
-    <aside class="sidebar" id="sidebar">
+    <aside id="sidebar" class="sidebar" aria-labelledby="sidebarLabel" aria-hidden="false">
       <div class="sidebar-brand">
-        <h2>Nexis.io</h2>
+        <h2 id="sidebarLabel">Nexis.io</h2>
       </div>
-      <nav class="sidebar-menu">
+
+      <nav class="sidebar-menu" aria-label="Primary navigation">
         <ul>
-          <li class="active"><a href="#">📊 Overview</a></li>
-          <li><a href="#">📦 Products</a></li>
-          <li><a href="#">👥 Customers</a></li>
-          <li><a href="#">📈 Analytics</a></li>
-          <li><a href="#">⚙️ Settings</a></li>
+          <li class="active"><a href="#" aria-current="page"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 3h18v18H3z" fill="currentColor"></path></svg> <span>Overview</span></a></li>
+          <li><a href="#"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor"></rect><rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor"></rect></svg> <span>Products</span></a></li>
+          <li><a href="#"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3" fill="currentColor"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="currentColor"></path></svg> <span>Customers</span></a></li>
+          <li><a href="#"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h4l3 8 4-16 3 8h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg> <span>Analytics</span></a></li>
+          <li><a href="#"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2v4M12 18v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M2 12h4M18 12h4M4.2 19.8l2.8-2.8M17 7l2.8-2.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg> <span>Settings</span></a></li>
         </ul>
       </nav>
     </aside>
 
-    <main class="main-content">
-      
+    <main id="main" class="main-content" role="main">
       <header class="main-header">
-        <div class="search-bar">
-          <input type="text" placeholder="Search analytics, users, logs...">
+        <div class="search-bar" role="search">
+          <label for="siteSearch" class="sr-only">Search</label>
+          <input id="siteSearch" type="search" inputmode="search" placeholder="Search analytics, users, logs..." />
         </div>
-        <div class="admin-profile">
-          <img src="profile.png" alt="Admin Profile" class="avatar">
+
+        <div class="admin-profile" aria-hidden="false">
+          <picture>
+            <source srcset="profile.webp" type="image/webp">
+            <img src="profile.png" alt="Sumaika S. profile" class="avatar" loading="lazy" width="44" height="44">
+          </picture>
           <div class="admin-info">
             <h4>Sumaika S.</h4>
             <p>Super Admin</p>
@@ -43,8 +75,7 @@
         </div>
       </header>
 
-      <section class="metrics-row">
-        
+      <section class="metrics-row" aria-label="Key metrics">
         <div class="metric-card">
           <div class="metric-info">
             <p class="metric-label">Total Revenue</p>
@@ -68,24 +99,23 @@
             <span class="trend stable">Optimal Status</span>
           </div>
         </div>
-
       </section>
 
-      <section class="table-section">
+      <section class="table-section" aria-labelledby="deploymentsHeading">
         <div class="table-header">
-          <h3>Recent Project Deployments</h3>
+          <h3 id="deploymentsHeading">Recent Project Deployments</h3>
           <button class="btn-primary">View All</button>
         </div>
-        
-        <div class="table-wrapper">
+
+        <div class="table-wrapper" role="region" aria-label="Recent deployments table">
           <table class="data-table">
             <thead>
               <tr>
-                <th>Project Name</th>
-                <th>Client Region</th>
-                <th>Data Stack</th>
-                <th>Status</th>
-                <th>Budget Value</th>
+                <th scope="col">Project Name</th>
+                <th scope="col">Client Region</th>
+                <th scope="col">Data Stack</th>
+                <th scope="col">Status</th>
+                <th scope="col">Budget Value</th>
               </tr>
             </thead>
             <tbody>
@@ -93,44 +123,30 @@
                 <td><strong>SaaSflow Engine</strong></td>
                 <td>United States</td>
                 <td>Vanilla JS / CSS3</td>
-                <td><span class="status-badge success">Live</span></td>
+                <td><span class="status-badge success" aria-label="Live">Live</span></td>
                 <td>$3,500.00</td>
               </tr>
               <tr>
                 <td><strong>PuppyWorld Platform</strong></td>
                 <td>Germany (EU)</td>
                 <td>Bootstrap 5 / UI</td>
-                <td><span class="status-badge success">Live</span></td>
+                <td><span class="status-badge success" aria-label="Live">Live</span></td>
                 <td>$4,200.00</td>
               </tr>
               <tr>
                 <td><strong>Nexus Inventory</strong></td>
                 <td>Local Server</td>
                 <td>PHP / MySQL</td>
-                <td><span class="status-badge warning">Testing</span></td>
+                <td><span class="status-badge warning" aria-label="Testing">Testing</span></td>
                 <td>$1,800.00</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
+    </main>
+  </div>
 
-    </main> </div> <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-
-    menuToggle.addEventListener('click', (e) => {
-      sidebar.classList.toggle('active');
-      e.stopPropagation(); // Prevents immediate closing event trigger
-    });
-
-    // Close sidebar dynamically if clicked outside the panel box on mobile screens
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 968 && !sidebar.contains(e.target) && e.target !== menuToggle) {
-        sidebar.classList.remove('active');
-      }
-    });
-  </script>
-
+  <script src="dashboard.min.js"></script>
 </body>
 </html>
